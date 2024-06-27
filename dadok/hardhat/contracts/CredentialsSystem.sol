@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.22;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -20,14 +21,17 @@ contract CredentialNFT is ERC721 {
     function _baseURI() internal view virtual override returns (string memory) {
         return baseTokenURI;
     }
-
-    function setBaseTokenURI(string memory _newBaseToken) external {
+    
+    
+    function setBaseTokenURI(string memory _newBaseTokenURI) external {
         require(
             msg.sender == credentialContractAddress,
             "Only the credential contract can set base URI"
         );
         baseTokenURI = _newBaseTokenURI;
     }
+
+   
 
     function mintNFT(address _to, string memory _tokenURI) external {
         require(

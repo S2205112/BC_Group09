@@ -22,6 +22,9 @@ contract Credential {
     // Credential title
     string public credentialTitle;
 
+    // This will be the owner's address
+    address public owner;
+
     // Mapping to check if an address is a registered student
     mapping(address => bool) public credentialStudent;
     mapping(address => bool) public eligibleStudents;
@@ -87,7 +90,12 @@ contract Credential {
         emit CredentialStarted(owner, credentialStartTimeStamp, credentialEndTimeStamp, credentialTitle);
     }
 
-    // Function to grant a credential
+    // Function to retrieve all students
+    function retrieveCredentials() public view returns (Student[] memory) {
+        return students;
+    }
+
+     // Function to grant a credential
     function grantCredential(uint256 _id) public credentialOngoing {
         require(credentialStudent[msg.sender], "You are not a registered student.");
         require(_id < students.length, "Invalid student ID");
@@ -95,11 +103,6 @@ contract Credential {
         students[_id].numberOfCredentials++;
         
         emit CredentialGranted(msg.sender, _id);
-    }
-
-    // Function to retrieve all students
-    function retrieveCredentials() public view returns (Student[] memory) {
-        return students;
     }
 
     // Function to monitor the credential period time
@@ -118,9 +121,10 @@ contract Credential {
     // Reset all student status
     function resetAllStudentStatus() public onlyOwner {
         for (uint256 i = 0; i < students.length; i++) {
-            students[i].numberOfCredentials = 0;
+        students[i].numberOfCredentials = 0;
+        credentialStudent[address(uint160(i))] = false; // Mark student as no longer registered
         }
-
+        
         emit CredentialReset(owner);
     }
 
@@ -213,4 +217,3 @@ contract Credential {
         return metadata;
     }
 }
-
