@@ -2,43 +2,43 @@ const hre = require("hardhat");
 const fs = require('fs');
 
 async function deployCredentialContract() {
-    const [deployer] = await hre.ethers.getSigner();
+    const [deployer] = await hre.ethers.getSigners();
     console.log("Deploying Credential contract with the account:", deployer.address);
  
-  const CredentialFactory = await hre.ethers.getContractFactory("Credential");
+  const credentialContract = await hre.ethers.getContractFactory("Credential");
   
-  const deployedCredentialContract = await CredentialFactory.deploy();
+  const deployedCredentialContract = await credentialContract.deploy();
 
   const deploymentInfo = `Deployer Address: ${deployer.address}\nCredential Factory Address: ${deployedCredentialContract.address}`;
   console.log(`Credential Factory Address deployed: ${deployedCredentialContract.address}`);
-  fs.writeFileSync('deploymentCredentialInfo.txt', deploymentInfo);
+  fs.writeFileSync("deploymentCredentialInfo.txt", deploymentInfo);
 
   return deployedCredentialContract;
 
 }
 
-async function deployCredentialNFTContract(CredentialFactory) {
+async function deployCredentialNFTContract(credentialContract) {
 
     const [deployer] = await hre.ethers.getSigners();
     console.log("Deploying Credential system contract with the account:", deployer.address);
   
-    const CredentialNFTContract = await hre.ethers.getContractFactory("CredentialNFT");
+    const credentialNFTContract = await hre.ethers.getContractFactory("CredentialNFT");
     
-    const deployedCredentialNFTContract = await CredentialNFTContract.deploy(CredentialFactory.address);
+    const deployedCredentialNFTContract = await credentialNFTContract.deploy(credentialContract.address);
   
-    const deploymentInfo = `Deployer Address: ${deployer.address}\nElectionNFT Contract Address: ${deployedCredentialNFTContract.address}`;
-    console.log(`ElectionNFT Contract Address deployed: ${deployedCredentialNFTContract.address}`);
+    const deploymentInfo = `Deployer Address: ${deployer.address}\nCredentialNFT Contract Address: ${deployedCredentialNFTContract.address}`;
+    console.log(`CredentialNFT Contract Address deployed: ${deployedCredentialNFTContract.address}`);
     fs.writeFileSync('deploymentInfoNFT.txt', deploymentInfo);
   
-    await CredentialFactory.setCredentialNFTContract(deployedCredentialNFTContract.address);
+    await credentialContract.setCredentialNFTContract(deployedCredentialNFTContract.address);
 
  }
 
  async function main() {
 
-    const CredentialFactory = await deployCredentialContract();
+    const credentialContract = await deployCredentialContract();
   
-    await deployCredentialNFTContract(CredentialFactory);
+    await deployCredentialNFTContract(credentialContract);
   }
   
   main().catch((error) => {
