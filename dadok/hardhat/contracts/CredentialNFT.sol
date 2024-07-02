@@ -1,54 +1,18 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.22;
+// contracts/CredentialNFT.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract CredentialNFT is ERC721 {
-    address public credentialContractAddress;
-    uint256 public credentialId;
-    uint256 public tokenIdCounter;
-    string private baseTokenURI;
-    mapping(uint256 => string) private tokenURIs;
+contract CredentialNFT is ERC721Enumerable {
+    address public admin;
 
-    constructor(address _credentialContractAddress)
-        ERC721("Credential NFT", "CNFT")
-    {
-        credentialContractAddress = _credentialContractAddress;
+    constructor() ERC721("CredentialNFT", "CREDNFT") {
+        admin = msg.sender;
     }
 
-    event NFTMinted(address indexed to, uint256 tokenId, string tokenURI);
-
-    function _baseURI() internal view virtual override returns (string memory) {
-        return baseTokenURI;
-    }
-    
-    
-    function setBaseTokenURI(string memory _newBaseTokenURI) external {
-        require(
-            msg.sender == credentialContractAddress,
-            "Only the credential contract can set base URI"
-        );
-        baseTokenURI = _newBaseTokenURI;
-    }
-
-   
-
-    function mintNFT(address _to, string memory _tokenURI) external {
-        require(
-            msg.sender == credentialContractAddress,
-            "Only the credential contract can mint NFTs"
-        );
-        tokenIdCounter++;
-        _safeMint(_to, tokenIdCounter);
-        tokenURIs[tokenIdCounter] = _tokenURI;
-        emit NFTMinted(_to, tokenIdCounter, _tokenURI);
-    }
-
-    function getTokenURI(uint256 _tokenId)
-        external
-        view
-        returns (string memory)
-    {
-        return tokenURIs[_tokenId];
+    function mint(address to, uint tokenId) external {
+        require(msg.sender == admin, "Only admin can mint tokens");
+        _safeMint(to, tokenId);
     }
 }

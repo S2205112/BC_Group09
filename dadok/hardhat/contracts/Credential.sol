@@ -1,219 +1,39 @@
-pragma solidity ^0.8.22;
-
-import "./CredentialNFT.sol";
+// contracts/Credential.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract Credential {
-    // Owner's address
-    address public credentialNFTContract;
-
-    // Struct to represent a student
     struct Student {
-        uint256 id;
+        uint id;
         string name;
-        uint256 numberOfCredentials;
+        uint grade;
+        bool exists;
     }
 
-    // Array of students
-    Student[] public students;
+    mapping(uint => Student) public students;
+    uint public studentCount;
 
-    // Credential ID
-    uint256 public credentialID = 0;
+    event StudentAdded(uint indexed id, string name);
+    event StudentRemoved(uint indexed id);
+    event GradeUpdated(uint indexed id, uint grade);
 
-    // Credential title
-    string public credentialTitle;
-
-    // This will be the owner's address
-    address public owner;
-
-    // Mapping to check if an address is a registered student
-    mapping(address => bool) public credentialStudent;
-    mapping(address => bool) public eligibleStudents;
-
-    // Timestamps for credential period
-    uint256 public credentialStartTimeStamp;
-    uint256 public credentialEndTimeStamp;
-
-    // Credential status flags
-    bool public credentialStarted;
-    bool public credentialFinalized;
-
-    // Modifiers
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not authorized");
-        _;
+    function addStudent(uint _id, string memory _name) public {
+        require(!students[_id].exists, "Student already exists");
+        students[_id] = Student(_id, _name, 0, true);
+        studentCount++;
+        emit StudentAdded(_id, _name);
     }
 
-    modifier credentialOngoing() {
-        require(credentialStarted && !credentialFinalized, "Credential not ongoing");
-        _;
+    function removeStudent(uint _id) public {
+        require(students[_id].exists, "Student does not exist");
+        delete students[_id];
+        studentCount--;
+        emit StudentRemoved(_id);
     }
 
-    // Events
-    event CredentialStarted(address indexed owner, uint256 startTimestamp, uint256 endTimestamp, string title);
-    event CredentialGranted(address indexed student, uint256 studentId);
-    event StudentAdded(uint256 indexed id, string name);
-    event CredentialDurationChanged(uint256 newDuration);
-    event CredentialFinished(address indexed owner);
-    event CredentialReset(address indexed owner);
-
-    // Constructor to initialize the contract owner
-    constructor() {
-        owner = msg.sender;
-    }
-
-    // Function to start the credential period
-    function startCredentialPeriod(string memory _credentialTitle, string[] memory _students, uint256 _credentialDuration) public onlyOwner {
-        require(!credentialStarted, "Credential period is currently ongoing");
-        require(!credentialFinalized, "Credential not yet reinitialized");
-
-        // Increment credentialID
-        credentialID += 1;
-
-        // Clear existing students
-        delete students;
-
-        // Add new students
-        for (uint256 i = 0; i < _students.length; i++) {
-            students.push(Student({id: i, name: _students[i], numberOfCredentials: 0}));
-            credentialStudent[address(uint160(i))] = true;
-        }
-
-        // Set the credential title
-        credentialTitle = _credentialTitle;
-
-        // Set timestamps and status
-        credentialStarted = true;
-        credentialStartTimeStamp = block.timestamp;
-        credentialEndTimeStamp = block.timestamp + (_credentialDuration * 1 minutes);
-
-        // Emit the event
-        emit CredentialStarted(owner, credentialStartTimeStamp, credentialEndTimeStamp, credentialTitle);
-    }
-
-    // Function to retrieve all students
-    function retrieveCredentials() public view returns (Student[] memory) {
-        return students;
-    }
-
-     // Function to grant a credential
-    function grantCredential(uint256 _id) public credentialOngoing {
-        require(credentialStudent[msg.sender], "You are not a registered student.");
-        require(_id < students.length, "Invalid student ID");
-
-        students[_id].numberOfCredentials++;
-        
-        emit CredentialGranted(msg.sender, _id);
-    }
-
-    // Function to monitor the credential period time
-    function credentialTimer() public view returns (uint256) {
-        if (block.timestamp >= credentialEndTimeStamp) {
-            return 0;
-        }
-        return (credentialEndTimeStamp - block.timestamp);
-    }
-
-    // Check if credential period is still ongoing
-    function checkCredentialPeriod() public view returns (bool) {
-        return credentialTimer() > 0;
-    }
-
-    // Reset all student status
-    function resetAllStudentStatus() public onlyOwner {
-        for (uint256 i = 0; i < students.length; i++) {
-        students[i].numberOfCredentials = 0;
-        credentialStudent[address(uint160(i))] = false; // Mark student as no longer registered
-        }
-        
-        emit CredentialReset(owner);
-    }
-
-    // Completely resetting the entire credential process
-    function resetCredential() public onlyOwner {
-        require(!credentialStarted, "Credential is currently ongoing");
-
-        // Reset student mappings
-        for (uint256 i = 0; i < students.length; i++) {
-            credentialStudent[address(uint160(i))] = false;
-        }
-
-        // Clear students array
-        delete students;
-
-        // Reset credential status and timers
-        credentialStarted = false;
-        credentialStartTimeStamp = 0;
-        credentialEndTimeStamp = 0;
-        credentialFinalized = false;
-
-        // Reset the credential title to the default value
-        credentialTitle = "No title yet";
-
-        // Emit Credential Reset
-        emit CredentialReset(owner);
-    }
-
-    function endCredential() public onlyOwner credentialOngoing {
-        credentialStarted = false;
-        credentialEndTimeStamp = block.timestamp;
-        credentialFinalized = true;
-
-        emit CredentialFinished(owner);
-    }
-
-    function transferOwnership(address newOwner) public onlyOwner {
-        require(newOwner != address(0), "Invalid new owner address");
-        owner = newOwner;
-    }
-
-    function changeCredentialDuration(uint256 _newDuration) public onlyOwner credentialOngoing {
-        require(_newDuration > 0, "Invalid duration");
-
-        credentialEndTimeStamp = credentialStartTimeStamp + (_newDuration * 1 minutes);
-
-        emit CredentialDurationChanged(_newDuration);
-    }
-
-    function addStudent(string memory _name) public onlyOwner credentialOngoing {
-        students.push(Student({id: students.length, name: _name, numberOfCredentials: 0}));
-        
-        emit StudentAdded(students.length - 1, _name);
-    }
-
-    function registerStudent(address _eligibleStudent) public onlyOwner {
-        credentialStudent[_eligibleStudent] = true;
-        eligibleStudents[_eligibleStudent] = true;
-    }
-
-    function registerStudents(address[] memory _eligibleStudents) public onlyOwner {
-        for (uint256 i = 0; i < _eligibleStudents.length; i++) {
-            credentialStudent[_eligibleStudents[i]] = true;
-            eligibleStudents[_eligibleStudents[i]] = true;
-        }
-    }
-
-    // Function to set CredentialNFT contract address
-    function setCredentialNFTContract(address _credentialNFTContract) public onlyOwner {
-        credentialNFTContract = _credentialNFTContract;
-    }
-
-    struct CredentialMetadata {
-        uint256 credentialID;
-        string title;
-        uint256 startTime;
-        uint256 endTime;
-    }
-
-    function generateMetadata() public view returns (CredentialMetadata memory) {
-        require(!credentialStarted, "Credential period is still ongoing");
-
-        CredentialMetadata memory metadata = CredentialMetadata({
-            credentialID: credentialID,
-            title: credentialTitle,
-            startTime: credentialStartTimeStamp,
-            endTime: credentialEndTimeStamp
-        });
-
-        return metadata;
+    function setGrade(uint _id, uint _grade) public {
+        require(students[_id].exists, "Student does not exist");
+        students[_id].grade = _grade;
+        emit GradeUpdated(_id, _grade);
     }
 }
