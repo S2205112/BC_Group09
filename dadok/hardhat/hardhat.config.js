@@ -12,11 +12,8 @@ module.exports = {
     
     },
   },
-  etherscan: {
-    apiKey: process.env.API_KEY,
-  },
   paths: {
-    artifacts: path.join(__dirname, "src/artifacts"),
-    contracts: path.join(__dirname, "src/contracts"),
+    artifacts: "./src/artifacts",
+    contracts: "./src/contracts",
   }
 };

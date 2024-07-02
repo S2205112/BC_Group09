@@ -1,6 +1,6 @@
 // contracts/Credential.sol
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.22;
 
 contract Credential {
     struct Student {

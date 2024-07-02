@@ -1,152 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DADOK dApp 2024</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-
-    <!-- Link to external ethers.js library -->
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <title>Form Example</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-
 <body>
-    
-    <div id="credentialStation">
 
-        <h1>DADOK dApp 2024</h1>
+    <form id="mintForm">
+        <button type="submit">Mint NFT</button>
+    </form>
 
-        <div id="connectCredential">
-            <button id="connectCredentialbutton">Connect Credential</button>
-            <p id="connectWalletMessage"><span id="connectWalletMessageSpan"></span></p>
-        </div>
+    <hr class="custom-line">
 
-        <!--Manage credential period button and manage new students-->
-        <div id="buttonPanel">
-            <hr class="custom-line">
-            <button id="credentialPanelButton">Credential Panel</button>
-            <button id="adminPanelButton" onclick="">Admin Panel</button>
-        </div>
+    <form id="addStudentForm">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName" required>
+        <button type="submit">Add Student</button>
+    </form>
 
-        
+    <hr class="custom-line">
 
-        <div id="credentialPanel" class="panel"> <!--Tillhör credential panel button-->
+    <form id="removeStudentForm">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" required>
+        <button type="submit">Remove Student</button>
+    </form>
 
-            <!-- Main board for displaying election information -->
-            <div id="mainBoard">
-        
-                <!-- Section for displaying election title, election ID and timer -->
-                <div id="topBoard">
-                    <p id="title">Course Title: <span id="courseTitleSpan"></span></p> 
-                    <p id="title">Students: <span id="studentsTitleSpan" onclick=""></span></p> <!--fetchElectionTitle() ska ha en metod för att hämta studenter-->
-                    <p id="title">Credential Duration: <span id="credentialTitleSpan" onclick=""></span></p> <!--fetchElectionTitle() ska ha en metod för att hämta dagar-->
-                    <p id="timerMessage">Timer: <span id="time" onclick="showTimer()">[refresh]</span></p>
-                </div>
-            </div>
+    <hr class="custom-line">
 
-            <table id="studentBoard">
-                <tr>
-                    <th>ID</th>
-                    <th>Students</th>
-                    <th>Credential</th>
-                    <th>Pass Button</th>
-                </tr>
-                <!-- Rows for each student will be dynamically added here using JavaScript -->
-            </table>
+    <form id="setGradeForm">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" required>
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" required>
+        <button type="submit">Set Grade</button>
+    </form>
 
-            <!-- Button to refresh the voting board -->
-            <div id="showCredentialListContainer">
-                <button id="showCredentialList" onclick="showTimer()">Start Credential Period</button>
-            </div>
-        
-            <hr class="custom-line">
-        
-            <!-- Section for casting a grade -->
-            <div id="gradeForm">
-                <h3>Please enter the student's ID for your grading:</h3>
-                <label for="">
-                    <input type="number" id="grade" />
-                    <button id="sendGrade">Send Grade</button>
-                </label>
-            </div>
-        
-        </div>
+    <hr class="custom-line">
 
-        <div id="admin" class="panel">
-
-            <div id="addStudents">
-                <h3 id="startStudentMessage">Add Students:</h3>
-                <input type="text" id="courseTitleInput" placeholder="Course Title" />
-                <input type="text" id="addStudentInput" placeholder="Student 1" />
-                <input type="text" id="addStudentInput2" placeholder="Student 2" />
-                <input type="text" id="addStudentInput3" placeholder="Student 3" />
-                <input type="text" id="addStudentInput4" placeholder="+ students separated by (,) " />
-                <p>How long will the credential period be?</p>
-                <input type="number" id="specifyDuration" placeholder="Duration in weeks" />
-                <button id="startCredentialPeriodButton">Start Credential Period</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="addCredentialsArray"> 
-                <h3>Register students addresses:</h3>
-                <input type="text" id="addStudentInputArray" placeholder="+ addresses separated by(,)" />
-                <button id="addStudentButtonArray">Register Students</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="changeCredentialDuration">
-                <h3>Change Credential duration:</h3>
-                <input type="number" id="changeCredentialDurationInput" />
-                <button id="changeCredentialDurationButton">Change duration</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="addStudents">
-                <!-- Section for adding a candidate -->
-                <h3>Add a student for the credential period:</h3>
-                <input type="text" id="addStudentInput" />
-                <button id="addStudentButton">Add Student</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="endCredential">
-                <!-- Section for finalizing the election -->
-                <h3>Finalise the credential period:</h3>
-                <button id="endCredentialButton">End Credential</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="saveResultsNFT">
-                <!-- Section for minting an NFT certificate -->
-                <h3>Generate an NFT certificate representing the credential results and distribute it to the addresses of
-                    all students:</h3>
-                <button id="generateAndUploadMetadataButton">Mint NFT</button>
-            </div>
-    
-            <hr class="custom-line">
-    
-            <div id="resetCredential">
-                <h3>Restart the credential period:</h3>
-                <button id="resetCredentialButton">Restart</button>
-            </div>
-    
-        </div>
-
-    </div>
-
-    <!-- Reference to your script.js file -->
-    <script src="script.js"></script>    
+    <script type="module" src="script.js"></script>
 </body>
-
 </html>

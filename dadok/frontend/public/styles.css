@@ -1,213 +1,54 @@
-:root {
-    --prussian-blue: #102537ff;
-    --prussian-blue-2: #24344Cff;
-    --oxford-blue: rgb(68, 130, 159);
-    --oxford-blue-2: #1D283Cff;
-    --oxford-blue-3: #172237ff;
-    --persian-green: #123252;
-    --blue-ncs: #123252;
-    --paynes-gray: #5D7084ff;
-    --rusty-red: #CA323Eff;
-}
-
+/* Styles for DADOK */
 body {
-    font-family: 'Roboto Regular', Helvetica, Arial, Lucida, sans-serif;
-    background-color: var(--oxford-blue);
-    line-height: 1.7em;
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0 20px;
-    font-size: 1.2em;
-    color: #ffffff;
+    font-family: Arial, sans-serif;
+    background-color: #d6bdd6;
+    margin: 0;
+    padding: 0;
 }
 
-#connectWalletBtn {
-    background-color: var(--blue-ncs);
-}
-
-#connectWalletBtn:active {
-    background-color: var(--persian-green);
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-#connectWalletMessageSpan {
-    display: block;
-    word-break: break-all;
-    font-weight: bold;
-    font-size: 0.7em;
-    margin-top: 10px;
-}
-
-.container {
-    width: 90%;
+form {
+    background-color: #926892;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-
-h1,
-h2 {
-    text-align: center;
-}
-
-h3 {
-    text-align: left;
-    border-radius: 12px;
-    border: 3px solid var(--blue-ncs);
-    background-color: var(--prussian-blue);
-    padding: 10px;
-    width: 60%;
-}
-
-h3 p {
-    text-align: center;
-}
-
-#credentialStation {
-    height: 95vh;
-}
-
-#connectMetamask,
-#credentialStation {
-    text-align: center;
-}
-
-#student {
-    text-align: right;
-    max-width: 600px;
-}
-
-.panel {
-    border: solid 3px var(--blue-ncs);
-    background-color: var(--oxford-blue-2);
-    padding: 10px;
-    margin-top: 30px;
-    border-radius: 12px;
-    display: none;
-    text-align: center;
-}
-
-.panel p {
-    font-weight: bold;
-    /* margin-top: 60px; */
-    text-align: left;
-}
-
-.panel div {
-    margin-top: 10px;
-    padding: 0 10px;
-
-}
-
-.panel input {
-    color: #1565c0;
-}
-
-#topBoard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    border: 3px solid var(--blue-ncs);
-    border-radius: 12px;
-    
-}
-
-#credentialStation {
-    margin-top: 20px;
-}
-
-.timerMessage {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 12px;
-    border: 3px solid var(--blue-ncs);
-    background-color: var(--prussian-blue);
-    padding: 0 10px;
-    margin-top: 20px;
-
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: center;
-}
-
-#gradeForm {
-    margin-top: 20px;
-    text-align: right;
-}
-
-#gradeForm p {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-#result {
-    margin-top: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: #ffffff;
+    max-width: 400px;
 }
 
 button {
-    cursor: pointer;
-    background-color: #123252;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #926892;
     border: none;
-    border-radius: 12px;
-    padding: 8px 16px;
-    margin-top: 10px;
-    font-weight: bolder;
-    font-size: 1em;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #1565c0;
+    background-color: #b1b2b5;
 }
 
-input[type="text"],
-input[type="number"] {
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: calc(100% - 22px);
     padding: 10px;
-    border: 3px solid var(--blue-ncs);
-    border-radius: 12px;
-    font-size: 1.1em;
-    margin-top: 10px;
-    background-color: #fff;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus {
-    border-color: var(--persian-green);
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-input[type="text"]::placeholder,
-input[type="number"]::placeholder {
-    color: #535353;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 hr.custom-line {
-    border: 1px dashed #1565c0;
-    height: 1px;
-    background-color: var(--persian-green);
-    width: 30%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-#resetCredentialButton {
-    background-color: var(--rusty-red);
+    border: 0;
+    height: 4px;
+    background: #ddd;
+    margin: 40px 0;
 }
 
