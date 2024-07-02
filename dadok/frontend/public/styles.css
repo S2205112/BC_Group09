@@ -1,15 +1,14 @@
 :root {
-    --prussian-blue: #102537ff; /* Main background color */
-    --prussian-blue-2: #24344Cff; /* Table background color */
-    --oxford-blue: #111A2Eff; /* Alternate background color */
-    --oxford-blue-2: #1D283Cff; /* Panel background color */
-    --oxford-blue-3: #172237ff; /* Header background color */
-    --persian-green: #019B83ff; /* Button background color (e.g., Connect Wallet Button) */
-    --blue-ncs: #0684C2ff; /* Border color and accent color */
-    --paynes-gray: #5D7084ff; /* Text color and secondary elements */
-    --rusty-red: #CA323Eff; /* Alert or error color (e.g., Reinitialise Election Button) */
+    --prussian-blue: #102537ff;
+    --prussian-blue-2: #24344Cff;
+    --oxford-blue: rgb(68, 130, 159);
+    --oxford-blue-2: #1D283Cff;
+    --oxford-blue-3: #172237ff;
+    --persian-green: #123252;
+    --blue-ncs: #123252;
+    --paynes-gray: #5D7084ff;
+    --rusty-red: #CA323Eff;
 }
-
 
 body {
     font-family: 'Roboto Regular', Helvetica, Arial, Lucida, sans-serif;
@@ -25,3 +24,190 @@ body {
     font-size: 1.2em;
     color: #ffffff;
 }
+
+#connectWalletBtn {
+    background-color: var(--blue-ncs);
+}
+
+#connectWalletBtn:active {
+    background-color: var(--persian-green);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#connectWalletMessageSpan {
+    display: block;
+    word-break: break-all;
+    font-weight: bold;
+    font-size: 0.7em;
+    margin-top: 10px;
+}
+
+.container {
+    width: 90%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: left;
+    border-radius: 12px;
+    border: 3px solid var(--blue-ncs);
+    background-color: var(--prussian-blue);
+    padding: 10px;
+    width: 60%;
+}
+
+h3 p {
+    text-align: center;
+}
+
+#credentialStation {
+    height: 95vh;
+}
+
+#connectMetamask,
+#credentialStation {
+    text-align: center;
+}
+
+#student {
+    text-align: right;
+    max-width: 600px;
+}
+
+.panel {
+    border: solid 3px var(--blue-ncs);
+    background-color: var(--oxford-blue-2);
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 12px;
+    display: none;
+    text-align: center;
+}
+
+.panel p {
+    font-weight: bold;
+    /* margin-top: 60px; */
+    text-align: left;
+}
+
+.panel div {
+    margin-top: 10px;
+    padding: 0 10px;
+
+}
+
+.panel input {
+    color: #1565c0;
+}
+
+#topBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 3px solid var(--blue-ncs);
+    border-radius: 12px;
+    
+}
+
+#credentialStation {
+    margin-top: 20px;
+}
+
+.timerMessage {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    border: 3px solid var(--blue-ncs);
+    background-color: var(--prussian-blue);
+    padding: 0 10px;
+    margin-top: 20px;
+
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+#gradeForm {
+    margin-top: 20px;
+    text-align: right;
+}
+
+#gradeForm p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#result {
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #123252;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    margin-top: 10px;
+    font-weight: bolder;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    border: 3px solid var(--blue-ncs);
+    border-radius: 12px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--persian-green);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #535353;
+}
+
+hr.custom-line {
+    border: 1px dashed #1565c0;
+    height: 1px;
+    background-color: var(--persian-green);
+    width: 30%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#resetCredentialButton {
+    background-color: var(--rusty-red);
+}
+
