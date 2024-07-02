@@ -1,6 +1,6 @@
 pragma solidity ^0.8.22;
 
-import "./CredentialsSystem.sol";
+import "./CredentialNFT.sol";
 
 contract Credential {
     // Owner's address

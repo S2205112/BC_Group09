@@ -1,0 +1,27 @@
+:root {
+    --prussian-blue: #102537ff; /* Main background color */
+    --prussian-blue-2: #24344Cff; /* Table background color */
+    --oxford-blue: #111A2Eff; /* Alternate background color */
+    --oxford-blue-2: #1D283Cff; /* Panel background color */
+    --oxford-blue-3: #172237ff; /* Header background color */
+    --persian-green: #019B83ff; /* Button background color (e.g., Connect Wallet Button) */
+    --blue-ncs: #0684C2ff; /* Border color and accent color */
+    --paynes-gray: #5D7084ff; /* Text color and secondary elements */
+    --rusty-red: #CA323Eff; /* Alert or error color (e.g., Reinitialise Election Button) */
+}
+
+
+body {
+    font-family: 'Roboto Regular', Helvetica, Arial, Lucida, sans-serif;
+    background-color: var(--oxford-blue);
+    line-height: 1.7em;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 20px;
+    font-size: 1.2em;
+    color: #ffffff;
+}

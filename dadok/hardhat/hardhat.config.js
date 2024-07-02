@@ -3,7 +3,7 @@ require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.24",
+  solidity: "0.8.22",
   networks: {
     instructoruas: {
     chainId: 1311,
@@ -16,7 +16,7 @@ module.exports = {
     apiKey: process.env.API_KEY,
   },
   paths: {
-    artifacts: "./src/artifacts",
-    contracts: './src/contracts',
+    artifacts: path.join(__dirname, "src/artifacts"),
+    contracts: path.join(__dirname, "src/contracts"),
   }
 };
