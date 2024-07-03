@@ -1,6 +1,5 @@
-const contractAddress = "0x4dd60Ce94483CC10A04abDDfaA7B5111774F9E82";
-const localHardhatURL = "http://localhost:3000"; // Replace with your local Hardhat URL
-import { ethers } from 'ethers';
+const contractAddress = "0x8b072ff50722b52A48A13d8e7064112a90266BFe"
+
 
 const contractABI = [
     {
@@ -701,19 +700,62 @@ const credentialNFTABI = [
     }
   ]
 
-
-
-
 // Get references to the forms
+
 const mintFrm = document.querySelector("#mintForm");
 const addStudentFrm = document.querySelector("#addStudentForm");
 const removeStudentFrm = document.querySelector("#removeStudentForm");
 const setGradeFrm = document.querySelector("#setGradeForm");
+const connectWalletMsg = document.querySelector("#connectWalletMessage");
+const connectWalletBtn = document.querySelector("#connectWalletbutton");
+const connectWalletMessageSpan = document.querySelector("#connectWalletMessageSpan")
+const connectWalletFrm = document.querySelector("#connectWalletForm")
 
 let contract;
 let signer;
 let credentialNFTContract; //lite oklart om denna behövs:)
 let metadata;
+
+
+// Function to connect Metamask
+async function connectToWallet() {
+  try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
+
+      provider.send("eth_requestAccounts", []).then(() => {
+          console.log("Accounts requested");
+
+          provider.listAccounts().then((accounts) => {
+              console.log("List of accounts:", accounts);
+
+              signer = provider.getSigner(accounts[0]);
+              contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+              console.log("Signer and Contract set up");
+
+              // Update UI elements and display messages
+              connectWalletBtn.textContent = "Connected";
+              connectWalletBtn.style.backgroundColor = "#019B83ff"; // Change the background color to light green
+
+              // Display address connected
+              connectWalletMessageSpan.innerHTML = `${accounts[0]}`;
+              
+                              
+          });
+      });
+
+      //connectWalletFrm.style.display = "block";
+  } catch (error) {
+      console.error(error);
+      console.log("Error connecting to Metamask. Please make sure it's installed and unlocked.");
+  }
+}
+
+connectWalletBtn.addEventListener("click", connectToWallet);
+
+
 
 
 // Function to initialize provider, signer and contract
