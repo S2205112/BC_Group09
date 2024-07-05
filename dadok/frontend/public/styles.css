@@ -6,6 +6,13 @@ body {
     padding: 0;
 }
 
+.centeredForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;  
+}
+
 form {
     background-color: #926892;
     padding: 20px;
