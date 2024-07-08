@@ -715,6 +715,19 @@ let signer;
 let credentialContract; 
 let metadata;
 
+// Function to initialize provider, signer and contract
+function initializeProvider() {
+    
+  provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
+
+  // Request user accounts and set up the signer and contract
+  return provider.send("eth_requestAccounts", []).then(() => {
+      return provider.listAccounts().then((accounts) => {
+          signer = provider.getSigner(accounts[0]);
+          credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
+      });
+  });
+}
 
 // Function to connect Metamask
 async function connectToWallet() {
@@ -753,25 +766,6 @@ async function connectToWallet() {
 }
 
 connectWalletBtn.addEventListener("click", connectToWallet);
-
-
-
-
-// Function to initialize provider, signer and contract
-function initializeProvider() {
-    
-    provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
-
-    // Request user accounts and set up the signer and contract
-    return provider.send("eth_requestAccounts", []).then(() => {
-        return provider.listAccounts().then((accounts) => {
-            signer = provider.getSigner(accounts[0]);
-            credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
-        });
-    });
-}
-
-initializeProvider();
 
 // Function to get the next available tokenId from the contract (assuming such a function exists)
 async function getNextTokenId() {
