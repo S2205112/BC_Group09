@@ -6,50 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADOK dApp</title>
     <!-- Include Ethers.js CDN link with crossorigin attribute -->
-       <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
+    <div id="credentialStation">
+        <form id="connectWalletForm" class="centeredForm">
+            <button id="connectWalletbutton">Connect Wallet</button>
+            <p id="connectWalletMessage"><span id="connectWalletMessageSpan"></span></p>
+        </form>
 
-    <form id="connectWalletForm" class="centeredForm">
-        <button id="connectWalletbutton">Connect Wallet</button>
-        <p id="connectWalletMessage"><span id="connectWalletMessageSpan"></span></p>
-    </form>
+        <hr class="custom-line">
 
-    <hr class="custom-line">
+        <form id="addStudentForm">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" name="studentName" required>
+            <button type="submit">Add Student</button>
+        </form>
 
-    <form id="addStudentForm">
-        <label for="studentName">Student Name:</label>
-        <input type="text" id="studentName" name="studentName" required>
-        <button type="submit">Add Student</button>
-    </form>
+        <hr class="custom-line">
 
-    <hr class="custom-line">
+        <form id="removeStudentForm">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" name="studentId" required>
+            <button type="submit">Remove Student</button>
+        </form>
 
-    <form id="removeStudentForm">
-        <label for="studentId">Student ID:</label>
-        <input type="text" id="studentId" name="studentId" required>
-        <button type="submit">Remove Student</button>
-    </form>
+        <hr class="custom-line">
 
-    <hr class="custom-line">
+        <form id="setGradeForm">
+            <label for="studentId">Student ID:</label>
+            <input type="text" id="studentId" name="studentId" required>
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" name="grade" required>
+            <button type="submit">Set Grade</button>
+        </form>
 
-    <form id="setGradeForm">
-        <label for="studentId">Student ID:</label>
-        <input type="text" id="studentId" name="studentId" required>
-        <label for="grade">Grade:</label>
-        <input type="text" id="grade" name="grade" required>
-        <button type="submit">Set Grade</button>
-    </form>
+        <hr class="custom-line">
 
-    <hr class="custom-line">
-
-    <form id="mintForm" class="centeredForm">
-        <label>Generate an NFT certificate</label>
-        <button type="submit">Mint NFT</button>
-    </form>
+        <form id="mintForm" class="centeredForm">
+            <label>Generate an NFT certificate</label>
+            <button type="submit">Mint NFT</button>
+        </form>
+    </div>
 
     <script type="module" src="script.js"></script>
 </body>
+
 </html>
