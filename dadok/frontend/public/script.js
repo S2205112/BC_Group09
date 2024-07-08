@@ -711,9 +711,8 @@ const connectWalletBtn = document.querySelector("#connectWalletbutton");
 const connectWalletMessageSpan = document.querySelector("#connectWalletMessageSpan")
 const connectWalletFrm = document.querySelector("#connectWalletForm")
 
-let contract;
 let signer;
-let credentialNFTContract; //lite oklart om denna behövs:)
+let credentialContract; 
 let metadata;
 
 
@@ -731,7 +730,7 @@ async function connectToWallet() {
               console.log("List of accounts:", accounts);
 
               signer = provider.getSigner(accounts[0]);
-              contract = new ethers.Contract(contractAddress, contractABI, signer);
+              credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
 
               console.log("Signer and Contract set up");
 
@@ -767,7 +766,7 @@ function initializeProvider() {
     return provider.send("eth_requestAccounts", []).then(() => {
         return provider.listAccounts().then((accounts) => {
             signer = provider.getSigner(accounts[0]);
-            contract = new ethers.Contract(contractAddress, contractABI, signer);
+            credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
         });
     });
 }
@@ -777,7 +776,7 @@ initializeProvider();
 // Function to get the next available tokenId from the contract (assuming such a function exists)
 async function getNextTokenId() {
     try {
-        const nextTokenId = await credentialNFTContract.nextTokenId();
+        const nextTokenId = await credentialContract.nextTokenId();
         return nextTokenId.toNumber();
     } catch (error) {
         console.error("Error getting next token ID:", error);
@@ -801,7 +800,7 @@ async function mint() {
     try {
         const to = await getStudentAddress();
         const tokenId = await getNextTokenId();
-        const tx = await credentialNFTContract.mint(to, tokenId);
+        const tx = await credentialContract.mint(to, tokenId);
         await tx.wait();
         console.log("NFT minted successfully:", tx);
     } catch (error) {
