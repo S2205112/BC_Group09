@@ -13,7 +13,7 @@
 <body>
     <div id="credentialStation">
         <form id="connectWalletForm" class="centeredForm">
-            <button id="connectWalletbutton">Connect Wallet</button>
+            <button id="connectWalletbutton" type="button">Connect Wallet</button>
             <p id="connectWalletMessage"><span id="connectWalletMessageSpan"></span></p>
         </form>
 
@@ -41,6 +41,14 @@
             <label for="grade">Grade:</label>
             <input type="text" id="grade" name="grade" required>
             <button type="submit">Set Grade</button>
+        </form>
+
+        <hr class="custom-line">
+
+        <form id="getStudentForm">
+            <label for="fetchStudentId">Student ID:</label>
+            <input type="text" id="fetchStudentId" name="fetchStudentId" required>
+            <button type="submit">Get Student</button>
         </form>
 
         <hr class="custom-line">

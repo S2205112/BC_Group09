@@ -1,5 +1,4 @@
-const contractAddress = "0x8b072ff50722b52A48A13d8e7064112a90266BFe"
-
+const contractAddress = "0xC72C664A9c6dF729215029384CccbA8363a52Ff3";
 
 const contractABI = [
     {
@@ -149,558 +148,7 @@ const contractABI = [
       "stateMutability": "view",
       "type": "function"
     }
-  ]
-
-const credentialNFTABI = [
-    {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [],
-      "name": "ERC721EnumerableForbiddenBatchMint",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "sender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721IncorrectOwner",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "ERC721InsufficientApproval",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "approver",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721InvalidApprover",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721InvalidOperator",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721InvalidOwner",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "receiver",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721InvalidReceiver",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "sender",
-          "type": "address"
-        }
-      ],
-      "name": "ERC721InvalidSender",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "ERC721NonexistentToken",
-      "type": "error"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "index",
-          "type": "uint256"
-        }
-      ],
-      "name": "ERC721OutOfBoundsIndex",
-      "type": "error"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "approved",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "Approval",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "bool",
-          "name": "approved",
-          "type": "bool"
-        }
-      ],
-      "name": "ApprovalForAll",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "Transfer",
-      "type": "event"
-    },
-    {
-      "inputs": [],
-      "name": "admin",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "approve",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        }
-      ],
-      "name": "balanceOf",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "getApproved",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        }
-      ],
-      "name": "isApprovedForAll",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "mint",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "name",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "ownerOf",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "safeTransferFrom",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "bytes",
-          "name": "data",
-          "type": "bytes"
-        }
-      ],
-      "name": "safeTransferFrom",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "operator",
-          "type": "address"
-        },
-        {
-          "internalType": "bool",
-          "name": "approved",
-          "type": "bool"
-        }
-      ],
-      "name": "setApprovalForAll",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes4",
-          "name": "interfaceId",
-          "type": "bytes4"
-        }
-      ],
-      "name": "supportsInterface",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "symbol",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "index",
-          "type": "uint256"
-        }
-      ],
-      "name": "tokenByIndex",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "index",
-          "type": "uint256"
-        }
-      ],
-      "name": "tokenOfOwnerByIndex",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "tokenURI",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "transferFrom",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ]
-
-// Get references to the forms
+  ];
 
 const mintFrm = document.querySelector("#mintForm");
 const addStudentFrm = document.querySelector("#addStudentForm");
@@ -708,159 +156,113 @@ const removeStudentFrm = document.querySelector("#removeStudentForm");
 const setGradeFrm = document.querySelector("#setGradeForm");
 const connectWalletMsg = document.querySelector("#connectWalletMessage");
 const connectWalletBtn = document.querySelector("#connectWalletbutton");
-const connectWalletMessageSpan = document.querySelector("#connectWalletMessageSpan")
-const connectWalletFrm = document.querySelector("#connectWalletForm")
+const connectWalletMessageSpan = document.querySelector("#connectWalletMessageSpan");
+const connectWalletFrm = document.querySelector("#connectWalletForm");
 
 let signer;
-let credentialContract; 
-let metadata;
+let credentialContract;
 
-// Function to initialize provider, signer and contract
-function initializeProvider() {
-    
-  provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
-
-  // Request user accounts and set up the signer and contract
-  return provider.send("eth_requestAccounts", []).then(() => {
-      return provider.listAccounts().then((accounts) => {
-          signer = provider.getSigner(accounts[0]);
-          credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
-      });
-  });
+async function initializeProvider() {
+  const provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
+  await provider.send("eth_requestAccounts", []);
+  const accounts = await provider.listAccounts();
+  signer = provider.getSigner(accounts[0]);
+  credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
 }
 
-// Function to connect Metamask
 async function connectToWallet() {
   try {
-      await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-      const provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
-
-      provider.send("eth_requestAccounts", []).then(() => {
-          console.log("Accounts requested");
-
-          provider.listAccounts().then((accounts) => {
-              console.log("List of accounts:", accounts);
-
-              signer = provider.getSigner(accounts[0]);
-              credentialContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-              console.log("Signer and Contract set up");
-
-              // Update UI elements and display messages
-              connectWalletBtn.textContent = "Connected";
-              connectWalletBtn.style.backgroundColor = "#019B83ff"; // Change the background color to light green
-
-              // Display address connected
-              connectWalletMessageSpan.innerHTML = `${accounts[0]}`;
-              
-                              
-          });
-      });
-
-      //connectWalletFrm.style.display = "block";
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    await initializeProvider();
+    connectWalletBtn.textContent = "Connected";
+    connectWalletBtn.style.backgroundColor = "#019B83ff";
+    const accounts = await provider.listAccounts();
+    connectWalletMessageSpan.innerHTML = `${accounts[0]}`;
+    credentialStation.style.display = "block";
   } catch (error) {
-      console.error(error);
-      console.log("Error connecting to Metamask. Please make sure it's installed and unlocked.");
+    console.error(error);
   }
 }
 
 connectWalletBtn.addEventListener("click", connectToWallet);
 
-// Function to get the next available tokenId from the contract (assuming such a function exists)
-async function getNextTokenId() {
-    try {
-        const nextTokenId = await credentialContract.nextTokenId();
-        return nextTokenId.toNumber();
-    } catch (error) {
-        console.error("Error getting next token ID:", error);
-        alert("Error getting next token ID: " + error.message);
-    }
+async function getNextStudentId() {
+  const studentCount = await credentialContract.studentCount();
+  return studentCount.toNumber() + 1;
 }
 
-// Function to get the student's Ethereum address (assuming such a function exists)
-async function getStudentAddress() {
-    try {
-        // This is a placeholder. Replace with actual logic to get the student's address.
-        return "0xStudentEthereumAddress";
-    } catch (error) {
-        console.error("Error getting student address:", error);
-        alert("Error getting student address: " + error.message);
-    }
-}
-
-// Function to mint an NFT
-async function mint() {
-    try {
-        const to = await getStudentAddress();
-        const tokenId = await getNextTokenId();
-        const tx = await credentialContract.mint(to, tokenId);
-        await tx.wait();
-        console.log("NFT minted successfully:", tx);
-    } catch (error) {
-        console.error("Error minting NFT:", error);
-        alert("Error minting NFT: " + error.message);
-    }
-}
-
-// Function to add a student
 async function addStudent(name) {
-    try {
-        const id = await getNextStudentId(); // Assuming you have a similar function to get next student ID
-        const tx = await credentialContract.addStudent(id, name);
-        await tx.wait();
-        console.log("Student added successfully:", tx);
-    } catch (error) {
-        console.error("Error adding student:", error);
-        alert("Error adding student: " + error.message);
-    }
+  try {
+    const id = await getNextStudentId();
+    const tx = await credentialContract.addStudent(id, name);
+    await tx.wait();
+    console.log("Student added successfully:", tx);
+  } catch (error) {
+    console.error("Error adding student:", error);
+    alert("Error adding student: " + error.message);
+  }
 }
 
-// Function to remove a student
 async function removeStudent(id) {
-    try {
-        const tx = await credentialContract.removeStudent(id);
-        await tx.wait();
-        console.log("Student removed successfully:", tx);
-    } catch (error) {
-        console.error("Error removing student:", error);
-        alert("Error removing student: " + error.message);
-    }
+  try {
+    const tx = await credentialContract.removeStudent(id);
+    await tx.wait();
+    console.log("Student removed successfully:", tx);
+  } catch (error) {
+    console.error("Error removing student:", error);
+    alert("Error removing student: " + error.message);
+  }
 }
 
-// Function to set a student's grade
 async function setGrade(id, grade) {
-    try {
-        const tx = await credentialContract.setGrade(id, grade);
-        await tx.wait();
-        console.log("Grade set successfully:", tx);
-    } catch (error) {
-        console.error("Error setting grade:", error);
-        alert("Error setting grade: " + error.message);
-    }
+  try {
+    const tx = await credentialContract.setGrade(id, grade);
+    await tx.wait();
+    console.log("Grade set successfully:", tx);
+  } catch (error) {
+    console.error("Error setting grade:", error);
+    alert("Error setting grade: " + error.message);
+  }
 }
 
-// Event listeners for form submissions
-mintFrm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    await mint();
-});
+async function getStudentById(id) {
+  try {
+    const student = await credentialContract.students(id);
+    if (student.exists) {
+      console.log(`Student ID: ${student.id}, Name: ${student.name}, Grade: ${student.grade}`);
+      alert(`Student ID: ${student.id}, Name: ${student.name}, Grade: ${student.grade}`);
+    } else {
+      alert(`Student with ID ${id} does not exist.`);
+    }
+  } catch (error) {
+    console.error("Error fetching student:", error);
+    alert("Error fetching student: " + error.message);
+  }
+}
 
 addStudentFrm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const name = addStudentFrm.querySelector("#studentName").value;
-    await addStudent(name);
+  event.preventDefault();
+  const name = addStudentFrm.querySelector("#studentName").value;
+  await addStudent(name);
 });
 
 removeStudentFrm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const id = removeStudentFrm.querySelector("#studentId").value;
-    await removeStudent(id);
+  event.preventDefault();
+  const id = removeStudentFrm.querySelector("#studentId").value;
+  await removeStudent(id);
 });
 
 setGradeFrm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const id = setGradeFrm.querySelector("#studentId").value;
-    const grade = setGradeFrm.querySelector("#grade").value;
-    await setGrade(id, grade);
+  event.preventDefault();
+  const id = setGradeFrm.querySelector("#studentId").value;
+  const grade = setGradeFrm.querySelector("#grade").value;
+  await setGrade(id, grade);
+});
+
+// New form for fetching student
+const getStudentFrm = document.querySelector("#getStudentForm");
+getStudentFrm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const id = getStudentFrm.querySelector("#fetchStudentId").value;
+  await getStudentById(id);
 });
