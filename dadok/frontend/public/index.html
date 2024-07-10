@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DADOK dApp</title>
-    <!-- Include Ethers.js CDN link with crossorigin attribute -->
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DADOK dApp</title>
+        <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
 <body>
+    <header>
+        <h1>Welcome to DADOK Credential Portal</h1>
+        <p>Manage student credentials for Blockchains with Ethereum and solidity SOSE2024</p>
+    </header>
+
     <div id="credentialStation">
         <form id="connectWalletForm" class="centeredForm">
             <button id="connectWalletbutton" type="button">Connect Wallet</button>
@@ -51,15 +53,8 @@
             <button type="submit">Get Student</button>
         </form>
 
-        <hr class="custom-line">
-
-        <form id="mintForm" class="centeredForm">
-            <label>Generate an NFT certificate</label>
-            <button type="submit">Mint NFT</button>
-        </form>
     </div>
 
     <script type="module" src="script.js"></script>
 </body>
-
 </html>

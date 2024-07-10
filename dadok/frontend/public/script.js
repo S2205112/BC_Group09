@@ -1,4 +1,4 @@
-const contractAddress = "0xC72C664A9c6dF729215029384CccbA8363a52Ff3";
+const contractAddress = "0x09EbF0F46F0644f73fb67807279816E4F343837f";
 
 const contractABI = [
     {
@@ -150,7 +150,6 @@ const contractABI = [
     }
   ];
 
-const mintFrm = document.querySelector("#mintForm");
 const addStudentFrm = document.querySelector("#addStudentForm");
 const removeStudentFrm = document.querySelector("#removeStudentForm");
 const setGradeFrm = document.querySelector("#setGradeForm");
@@ -161,9 +160,11 @@ const connectWalletFrm = document.querySelector("#connectWalletForm");
 
 let signer;
 let credentialContract;
+let provider;
+
 
 async function initializeProvider() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
+  provider = new ethers.providers.Web3Provider(window.ethereum, 1311);
   await provider.send("eth_requestAccounts", []);
   const accounts = await provider.listAccounts();
   signer = provider.getSigner(accounts[0]);
@@ -240,6 +241,7 @@ async function getStudentById(id) {
   }
 }
 
+
 addStudentFrm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const name = addStudentFrm.querySelector("#studentName").value;
@@ -259,10 +261,10 @@ setGradeFrm.addEventListener("submit", async (event) => {
   await setGrade(id, grade);
 });
 
-// New form for fetching student
 const getStudentFrm = document.querySelector("#getStudentForm");
 getStudentFrm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const id = getStudentFrm.querySelector("#fetchStudentId").value;
   await getStudentById(id);
 });
+

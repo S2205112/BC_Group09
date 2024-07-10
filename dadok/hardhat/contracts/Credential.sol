@@ -3,6 +3,7 @@
 pragma solidity ^0.8.22;
 
 contract Credential {
+
     struct Student {
         uint id;
         string name;
@@ -34,12 +35,8 @@ contract Credential {
         uint index = studentIndex[_id];
         uint lastIndex = studentIds.length - 1;
         uint lastId = studentIds[lastIndex];
-
-        // Swap the last student with the one to be removed
         studentIds[index] = lastId;
         studentIndex[lastId] = index;
-
-        // Remove the last student
         studentIds.pop();
         delete studentIndex[_id];
         delete students[_id];
@@ -53,4 +50,6 @@ contract Credential {
         students[_id].grade = _grade;
         emit GradeUpdated(_id, _grade);
     }
+
 }
+
